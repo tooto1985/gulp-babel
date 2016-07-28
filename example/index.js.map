@@ -1,1 +1,1 @@
-{"version":3,"sources":["index.es6.js"],"names":["a","b"],"mappings":"AAAA,YAEA,IAFKA,GAAQ,MAANC,EAAa","file":"index.js","sourcesContent":["var [a,b] = [\"abc\", \"xyz\"];\r\n"],"sourceRoot":"/source/"}
+{"version":3,"sources":["index.es6.js"],"names":["a","b","console","log"],"mappings":"AAAA,YAEA,IAFKA,GAAQ,MAANC,EAAa,OACpB,SAACD,GACAE,QAAQC,IAAIH,IACVC","file":"index.js","sourcesContent":["var [a,b] = [\"abc\", \"xyz\"];\r\n(a=>{\r\n\tconsole.log(a);\r\n})(b);"],"sourceRoot":"/source/"}
