@@ -9,16 +9,22 @@ import plumber from "gulp-plumber";
 import debug from "gulp-debug";
 gulpsync(gulp);
 const $ = gulpLoadPlugins();
-const path = "example/**/*.es6.js";
+const path = ["example/**/*.es6.js","test/**/*.es6.js"];
 gulp.task("watch", () => {
-    gulp.watch(path, ["babel"]);
+    if (typeof path === "object" && path instanceof Array) {
+        for (var i = 0, max = path.length; i < max; i++) {
+            gulp.watch(path[i], ["babel"]);
+        }
+    } else {
+        gulp.watch(path, ["babel"]);
+    }
 });
 gulp.task("babel", () => {
     return gulp.src(path)
         .pipe(plumber()) // onerror don't stop
         .pipe(sourcemaps.init()) // sourcemap init
         .pipe($.babel()) // ES6 to ES5
-        .pipe(uglify()) // minify js
+        //.pipe(uglify()) // minify js
         .pipe(bom()) // utf-8
         .pipe(rename(path => {
             path.basename = path.basename.replace(".es6", "");
@@ -32,3 +38,6 @@ gulp.task("babel", () => {
         })); //output file
 });
 gulp.task("default", ["babel", "watch"]);
+gulp.task("test", () => {
+    console.log(process.argv);
+});
